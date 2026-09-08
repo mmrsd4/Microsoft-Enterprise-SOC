@@ -53,7 +53,7 @@ LINUX-SRV-01
 ## Network Architecture
 
 ```text
-VMnet10 — 192.168.50.0/24
+VMnet10 - 192.168.50.0/24
 │
 ├── Kali
 │   └── 192.168.50.10
@@ -95,13 +95,3 @@ The following system information was recorded:
 * IPv4 addresses
 * Routing information
 * VMware network identifier: VMnet10
-
-## Day 1 Result
-
-```text
-VMnet10
-
-Kali          → 192.168.50.10
-WIN-SOC01     → 192.168.50.20
-LINUX-SRV-01  → 192.168.50.30
-```
