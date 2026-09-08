@@ -13,7 +13,7 @@ KQL, detection engineering, threat hunting and incident response.
 
 ## Project Status
 
-Day 1 - Lab architecture and infrastructure
+## Day 1 - Lab architecture and infrastructure
 
 Validation status and lab setup details are documented in:
 
@@ -31,8 +31,9 @@ Validation status and lab setup details are documented in:
           │                │                │
       WIN-SOC01           Kali        LINUX-SRV-01
       192.168.50.20   192.168.50.10    192.168.50.30
-      
-Day 2 - Windows Security Telemetry + Sysmon
+
+
+## Day 2 - Windows Security Telemetry + Sysmon
 
 ## Windows Security Telemetry
 
