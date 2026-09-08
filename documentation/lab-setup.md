@@ -88,10 +88,26 @@ The `192.168.50.0/24` network has no default gateway configured on the Kali, Ubu
 
 ## Evidence
 
-The following system information was recorded:
+### VMware Network Configuration
 
-* Hostnames
-* Network interfaces
-* IPv4 addresses
-* Routing information
-* VMware network identifier: VMnet10
+![VMware Network](../screenshots/DAY01-01-vmware-network.png)
+
+### Windows Hostname
+
+![Windows Hostname](../screenshots/DAY01-02-windows-hostname.png)
+
+### Kali Linux VM
+
+![Kali Linux](../screenshots/DAY01-03-kali-vm.png)
+
+### Ubuntu Server VM
+
+![Ubuntu Server](../screenshots/DAY01-04-ubuntu-vm.png)
+
+### Network Validation
+
+![Network Validation](../screenshots/DAY01-05-network-validation.png)
+
+### VMware Lab Overview
+
+![VMware Lab Overview](../screenshots/DAY01-06-vmware-lab-overview.png)

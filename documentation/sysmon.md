@@ -70,8 +70,21 @@ DNS activity associated with endpoint processes
 
 ## Evidence
 
-screenshots/
-├── DAY02-05-sysmon-installed.png
-├── DAY02-06-sysmon-event-1.png
-├── DAY02-07-sysmon-event-3.png
-└── DAY02-08-sysmon-event-22.png
+The following screenshots provide visual evidence of Sysmon installation,
+service validation, and generated telemetry on `WIN-SOC01`.
+
+### Sysmon Installation and Service Validation
+
+![Sysmon Installation](../screenshots/DAY02-05-sysmon-installed.png)
+
+### Event ID 1 — Process Creation
+
+![Sysmon Event ID 1](../screenshots/DAY02-06-sysmon-event-1.png)
+
+### Event ID 3 — Network Connection
+
+![Sysmon Event ID 3](../screenshots/DAY02-07-sysmon-event-3.png)
+
+### Event ID 22 — DNS Query
+
+![Sysmon Event ID 22](../screenshots/DAY02-08-sysmon-event-22.png)

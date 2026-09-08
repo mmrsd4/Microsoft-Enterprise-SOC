@@ -56,8 +56,18 @@ Suspicious process creation
 
 ## Evidence
 
-screenshots/
-├── DAY02-01-windows-auditing.png
-├── DAY02-02-security-event-4624.png
-├── DAY02-03-security-event-4625.png
-└── DAY02-04-security-event-4688.png
+### Windows Security Auditing
+
+![Windows Security Auditing](../screenshots/DAY02-01-windows-auditing.png)
+
+### Event ID 4624 — Successful Logon
+
+![Security Event 4624](../screenshots/DAY02-02-security-event-4624.png)
+
+### Event ID 4625 — Failed Logon
+
+![Security Event 4625](../screenshots/DAY02-03-security-event-4625.png)
+
+### Event ID 4688 — Process Creation
+
+![Security Event 4688](../screenshots/DAY02-04-security-event-4688.png)
