@@ -32,6 +32,7 @@ Validation status and lab setup details are documented in:
       WIN-SOC01           Kali        LINUX-SRV-01
       192.168.50.20   192.168.50.10    192.168.50.30
 
+```
 
 ## Day 2 - Windows Security Telemetry + Sysmon
 
@@ -68,3 +69,5 @@ Validation status is documented in:
           │
           ├── Windows Security Events
           └── Sysmon
+
+```

@@ -12,6 +12,7 @@ The Sysmon installation was validated using:
 
 ```powershell
 Get-Service Sysmon64
+```
 
 ## Configuration
 
@@ -29,6 +30,7 @@ The Sysmon service was checked with:
 
 ```powershell
 Get-Service Sysmon64
+```
 
 Result:
 Status   Name      DisplayName

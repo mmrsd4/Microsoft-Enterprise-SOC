@@ -18,7 +18,7 @@ The Windows audit policy was checked and the required subcategories were enabled
 
 Validated audit settings:
 
-| Audit Subcategory | Setting |
+| Audit Subcategory         | Setting             |
 |---------------------------|---------------------|
 | Logon                     | Success and Failure |
 | Account Lockout           | Success and Failure |
@@ -30,17 +30,19 @@ The audit policy was verified using:
 
 ```powershell
 auditpol /get /category:*
+```
 
 ## Validation Results
 
-Event ID  Activity	                           Status
-4624      Successful logon                      VALIDATED
-4625      Failed logon	                     VALIDATED
-4688      Process creation	                     VALIDATED
-4720      User account creation                 VALIDATED
-4728      Global security group modification    VALIDATED
-4732      Local security group modification     VALIDATED
-4740      Account lockout                       VALIDATED
+| Event ID | Activity | Status |
+|---:|---|---|
+| 4624 | Successful logon | VALIDATED |
+| 4625 | Failed logon | VALIDATED |
+| 4688 | Process creation | VALIDATED |
+| 4720 | User account creation | VALIDATED |
+| 4728 | Global security group modification | VALIDATED |
+| 4732 | Local security group modification | VALIDATED |
+| 4740 | Account lockout | VALIDATED |
 
 ## Detection Opportunities
 
