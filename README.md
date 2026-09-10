@@ -1,8 +1,8 @@
 # Microsoft Enterprise SOC
 
-Enterprise-style SOC laboratory built around Microsoft Sentinel,
-Windows telemetry, Sysmon, Microsoft Defender, KQL, detection engineering,
-threat hunting and incident response.
+Enterprise-style SOC laboratory built around Windows Security telemetry,
+Sysmon, Microsoft Defender, detection engineering, threat hunting and
+incident response.
 
 ## Lab Environment
 
@@ -121,3 +121,88 @@ The Day 3 validation was performed locally on WIN-SOC01.
                   └── Defender Operational Logs
 
 ```
+
+## Day 4 - Local Detection Engineering
+
+The Windows Security, Sysmon and Microsoft Defender telemetry
+validated during the previous phases is used to develop and
+validate local SOC detection logic.
+
+Validation status and actual detection logic are documented in:
+
+`detections/`
+
+### Detection Files
+
+- `detections/brute-force.md`
+- `detections/suspicious-powershell.md`
+- `detections/user-creation.md`
+- `detections/suspicious-process.md`
+- `detections/network-activity.md`
+
+## Detection Engineering
+
+The following detection areas were validated locally on WIN-SOC01:
+
+- Failed logon activity
+- Suspicious PowerShell
+- User account creation
+- Suspicious process execution
+- Network activity
+
+The detections use Windows Security and Sysmon telemetry.
+Each detection documents the data source, event ID, detection
+logic, observed result, analyst interpretation, validation status.
+
+PowerShell and process execution detections are based on
+process creation telemetry and require analyst review of
+command-line and process context.
+
+## Day 4 Architecture
+
+```text    
+                    VMware Workstation
+                           │
+                         VMnet10
+                    192.168.50.0/24
+                           │
+          ┌────────────────┼────────────────┐
+          │                │                │
+      WIN-SOC01           Kali        LINUX-SRV-01
+      192.168.50.20   192.168.50.10    192.168.50.30
+          │
+          ├── Windows Security Events
+          ├── Sysmon
+          └── Microsoft Defender
+                           │
+                           ▼
+                  Detection Engineering
+                           │
+                 ┌─────────┼─────────┐
+                 │         │         │
+               Logon     PowerShell  Account
+              Detection   Detection  Detection
+                 │         │         │
+                 ├─────────┼─────────┤
+                 │                   │
+               Process          Network
+              Detection         Detection
+                 │                   │
+                 └─────────┬─────────┘
+                           ▼
+                      SOC Analysis
+                      
+```
+
+Project Limitations
+
+Microsoft Sentinel, Log Analytics Workspace, Microsoft Entra ID
+and Sentinel-based KQL are not implemented in the current
+laboratory because an Azure subscription is not available.
+
+The project therefore focuses on locally validated Windows
+Security telemetry, Sysmon telemetry, Microsoft Defender,
+detection engineering, threat hunting and incident response.
+
+Cloud-based Sentinel ingestion and Sentinel analytics rules
+are outside the validated scope of this implementation.
