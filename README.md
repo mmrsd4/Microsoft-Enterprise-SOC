@@ -189,12 +189,93 @@ command-line and process context.
               Detection         Detection
                  │                   │
                  └─────────┬─────────┘
-                           ▼
-                      SOC Analysis
                       
+                                            
 ```
 
-Project Limitations
+## Day 5 - Local Threat Hunting
+
+The Windows Security, Sysmon and Microsoft Defender telemetry
+validated during the previous phases is used for local threat
+hunting and contextual analysis.
+
+Validation status and actual hunting activities are documented in:
+
+`hunting/`
+
+### Hunting Files
+
+* `hunting/authentication-hunting.md`
+* `hunting/powershell-hunting.md`
+* `hunting/process-hunting.md`
+* `hunting/network-hunting.md`
+* `hunting/dns-hunting.md`
+* `hunting/defender-hunting.md`
+
+## Threat Hunting
+
+The following hunting areas were validated locally on WIN-SOC01:
+
+* Authentication activity
+* PowerShell activity
+* Process creation
+* Network connections
+* DNS queries
+* Microsoft Defender telemetry
+
+The hunting process uses Windows Security, Sysmon and Microsoft
+Defender telemetry to identify activity requiring further
+investigation.
+
+Hunting results are reviewed using event details, process context,
+user information, network information and available security
+telemetry.
+
+Observed activity is not automatically classified as malicious.
+Contextual analysis is used to distinguish controlled tests,
+normal system activity and activity requiring further investigation.
+
+## Day 5 Architecture
+
+```text
+                    VMware Workstation
+                           │
+                         VMnet10
+                    192.168.50.0/24
+                           │
+          ┌────────────────┼────────────────┐
+          │                │                │
+      WIN-SOC01           Kali        LINUX-SRV-01
+      192.168.50.20   192.168.50.10    192.168.50.30
+          │
+          ├── Windows Security Events
+          ├── Sysmon
+          └── Microsoft Defender
+                           │
+                           ▼
+                  Detection Engineering
+                           │
+                           ▼
+                     Threat Hunting
+                           │
+              ┌────────────┼────────────┐
+              │            │            │
+        Authentication  PowerShell    Process
+              │            │            │
+              ├────────────┼────────────┤
+              │            │            │
+           Network        DNS       Defender
+              │            │            │
+              └────────────┼────────────┘
+                           ▼
+                   Contextual Analysis
+                           │
+                           ▼
+                      SOC Analysis
+
+```
+
+## Project Limitations
 
 Microsoft Sentinel, Log Analytics Workspace, Microsoft Entra ID
 and Sentinel-based KQL are not implemented in the current
