@@ -189,7 +189,8 @@ command-line and process context.
               Detection         Detection
                  │                   │
                  └─────────┬─────────┘
-                      
+                           ▼
+                      SOC Analysis      
                                             
 ```
 
