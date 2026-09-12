@@ -6,12 +6,32 @@ incident response.
 
 ## Lab Environment
 
-- VMware Workstation
-- Windows endpoint: WIN-SOC01
-- Kali Linux
-- Ubuntu Server
-
-## Project Status
+* VMware Workstation
+* Windows 10 Pro — `WIN-SOC01`
+* Kali Linux
+* Ubuntu Server — `LINUX-SRV-01`
+* VMware VMnet10 Host-only Network
+* IPv4 / TCP-IP Networking
+* Windows Security Event Log
+* Windows Audit Policy / `auditpol`
+* PowerShell
+* Microsoft Sysmon
+* Microsoft Defender Antivirus
+* Windows Event IDs `4624`, `4625`, `4688`, `4720`, `4728`, `4732`, `4740`
+* Sysmon Event IDs `1`, `3`, `11`, `13`, `22`
+* RDP / Remote Desktop
+* SMB / Microsoft-DS
+* Nmap
+* FreeRDP (`xfreerdp`)
+* SSH / SCP
+* Detection Engineering
+* Threat Hunting
+* Event and Timeline Analysis
+* Network Reconnaissance & Service Enumeration
+* Authentication Analysis
+* Process Analysis
+* Incident Response
+* MITRE ATT&CK
 
 ## Day 1 - Lab architecture and infrastructure
 
@@ -275,6 +295,59 @@ normal system activity and activity requiring further investigation.
                       SOC Analysis
 
 ```
+## Day 6 - Controlled Adversary Simulation & Incident Response
+
+A controlled adversary simulation was conducted from Kali against `WIN-SOC01` within the isolated VMware SOC laboratory to validate attack visibility, endpoint telemetry and incident investigation workflows.
+
+The exercise covered:
+
+* Network reconnaissance
+* Service enumeration
+* RDP service validation
+* Controlled authentication testing
+* Windows Security investigation
+* Sysmon process investigation
+* Microsoft Defender investigation
+* Ubuntu-based SOC investigation
+* Incident timeline creation
+* Containment and cleanup
+
+The complete incident investigation, evidence and timeline are documented in:
+
+`incidents/incident-001.md`
+
+## Day 6 Architecture
+
+```text
+                    VMware Workstation
+                           │
+                         VMnet10
+                    192.168.50.0/24
+                           │
+          ┌────────────────┼────────────────┐
+          │                │                │
+        Kali           WIN-SOC01       LINUX-SRV-01
+     192.168.50.10    192.168.50.20    192.168.50.30
+          │                │                │
+          ▼                │                │
+   Adversary Simulation    │                │
+          │                │                │
+          └───────────────►│                │
+                           │                │
+                  ┌────────┴────────┐       │
+                  │                 │       │
+             Windows Security    Sysmon     │
+                  │                 │       │
+                  └────────┬────────┘       │
+                           │                │
+                           ▼                ▼
+                         SOC Investigation
+                              │
+                              ▼
+                       Incident Response
+
+```
+
 
 ## Project Limitations
 

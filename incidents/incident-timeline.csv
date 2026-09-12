@@ -1,0 +1,13 @@
+Timestamp,Source,Event,Source_IP,Destination_IP,Analyst_Comment
+2026-09-12 03:45:14,Windows Security,4625 Failed Logon,192.168.50.10,192.168.50.20,Failed authentication for SOC-TestUser
+2026-09-12 03:45:27,Windows Security,4625 Failed Logon,192.168.50.10,192.168.50.20,Failed authentication for SOC-TestUser
+2026-09-12 03:45:38,Windows Security,4624 Successful Logon,192.168.50.10,192.168.50.20,Successful authentication for SOC-TestUser
+2026-09-12 03:47:56,Windows Security,4624 Successful Logon,192.168.50.10,192.168.50.20,Successful authentication for SOC-TestUser
+2026-09-12 04:31:22,Windows Security,4625 Failed Logon,192.168.50.10,192.168.50.20,Failed authentication for SOC-TestUser
+2026-09-12 04:31:35,Windows Security,4625 Failed Logon,192.168.50.10,192.168.50.20,Failed authentication for SOC-TestUser
+2026-09-12 04:31:46,Windows Security,4624 Successful Logon,192.168.50.10,192.168.50.20,Successful network authentication for SOC-TestUser
+2026-09-12 04:31:48,Windows Security,4624 Successful Logon,192.168.50.10,192.168.50.20,Successful remote interactive authentication for SOC-TestUser
+2026-09-12 04:35:24,Windows Security,4624 Successful Logon,192.168.50.10,192.168.50.20,Successful network authentication for SOC-TestUser
+2026-09-12 04:35:27,Windows Security,4624 Successful Logon,192.168.50.10,192.168.50.20,Successful remote interactive authentication for SOC-TestUser
+2026-09-12 04:36:08,Windows Security,4624 Successful Logon,192.168.50.10,192.168.50.20,Successful network authentication for SOC-TestUser
+2026-09-12 04:36:09,Windows Security,4624 Successful Logon,192.168.50.10,192.168.50.20,Successful remote interactive authentication for SOC-TestUser
