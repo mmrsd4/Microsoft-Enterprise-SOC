@@ -339,9 +339,9 @@ The complete incident investigation, evidence and timeline are documented in:
              Windows Security    Sysmon     │
                   │                 │       │
                   └────────┬────────┘       │
-                           │                │
+                           │           Ubuntu SOC Support
                            ▼                ▼
-                         SOC Investigation
+                       SOC Investigation
                               │
                               ▼
                        Incident Response
