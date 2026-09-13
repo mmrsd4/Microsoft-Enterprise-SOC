@@ -289,6 +289,12 @@ SOC-Evidence-20260912-231542/
 
 The package was created successfully on `WIN-SOC01`.
 
+## MITRE ATT&CK mapping:
+
+- `T1046` — Network Service Scanning
+- `T1021.001` — Remote Services: RDP
+- `T1078` — Valid Accounts
+
 ## Investigation Workflow
 
 ```text

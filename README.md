@@ -1,37 +1,82 @@
-# Microsoft Enterprise SOC
+# Microsoft Windows SOC Lab
 
-Enterprise-style SOC laboratory built around Windows Security telemetry,
-Sysmon, Microsoft Defender, detection engineering, threat hunting and
-incident response.
+A simulated Windows SOC laboratory built with VMware virtual machines to demonstrate Windows Security monitoring, Sysmon telemetry, Microsoft Defender investigation, detection engineering, threat hunting, incident response and local SOC evidence automation.
+
+Kali Linux is used for controlled adversary simulation, while Ubuntu Server is used for SOC investigation support and evidence organization.
+
+## Project Overview
+
+This project demonstrates an end-to-end local SOC workflow:
+
+```text
+Lab Setup
+   ↓
+Windows Security + Sysmon + Defender
+   ↓
+Detection Engineering
+   ↓
+Threat Hunting
+   ↓
+Controlled Adversary Simulation
+   ↓
+Incident Investigation
+   ↓
+Incident Response
+   ↓
+Automated Evidence Collection
+   ↓
+Evidence / Timeline / Reporting
+```
+
+The project was built and validated in an isolated VMware laboratory using real endpoint telemetry generated during controlled testing.
+
+## Objectives
+
+- Build an isolated Windows SOC laboratory
+- Collect and analyze Windows Security telemetry
+- Deploy and validate Sysmon telemetry
+- Validate Microsoft Defender security telemetry
+- Develop local SOC detection logic
+- Perform threat hunting using endpoint telemetry
+- Conduct controlled adversary simulation
+- Investigate authentication, process and network activity
+- Create an incident timeline and investigation report
+- Automate local SOC evidence collection with PowerShell
+- Organize evidence using an Ubuntu SOC support system
 
 ## Lab Environment
 
-* VMware Workstation
-* Windows 10 Pro — `WIN-SOC01`
-* Kali Linux
-* Ubuntu Server — `LINUX-SRV-01`
-* VMware VMnet10 Host-only Network
-* IPv4 / TCP-IP Networking
-* Windows Security Event Log
-* Windows Audit Policy / `auditpol`
-* PowerShell
-* Microsoft Sysmon
-* Microsoft Defender Antivirus
-* Windows Event IDs `4624`, `4625`, `4688`, `4720`, `4728`, `4732`, `4740`
-* Sysmon Event IDs `1`, `3`, `11`, `13`, `22`
-* RDP / Remote Desktop
-* SMB / Microsoft-DS
-* Nmap
-* FreeRDP (`xfreerdp`)
-* SSH / SCP
-* Detection Engineering
-* Threat Hunting
-* Event and Timeline Analysis
-* Network Reconnaissance & Service Enumeration
-* Authentication Analysis
-* Process Analysis
-* Incident Response
-* MITRE ATT&CK
+| System         | Role                             | IP Address      |
+| -------------- | -------------------------------- | --------------- |
+| `WIN-SOC01`    | Windows SOC endpoint             | `192.168.50.20` |
+| `Kali`         | Controlled adversary simulation  | `192.168.50.10` |
+| `LINUX-SRV-01` | Ubuntu SOC investigation/support | `192.168.50.30` |
+
+### Technologies and Tools
+
+- VMware Workstation
+- VMware VMnet10 Host-only Network
+- Windows 10 Pro
+- Kali Linux
+- Ubuntu Server
+- Windows Security Event Log
+- Windows Audit Policy / `auditpol`
+- PowerShell
+- Microsoft Sysmon
+- Microsoft Defender Antivirus
+- Nmap
+- FreeRDP (`xfreerdp`)
+- RDP / Remote Desktop
+- SMB / Microsoft-DS
+- SSH / SCP
+- Detection Engineering
+- Threat Hunting
+- Event and Timeline Analysis
+- Network Reconnaissance & Service Enumeration
+- Authentication Analysis
+- Process Analysis
+- Incident Response
+- MITRE ATT&CK
 
 ## Day 1 - Lab architecture and infrastructure
 
@@ -42,16 +87,18 @@ Validation status and lab setup details are documented in:
 ## Day 1 Architecture
 
 ```text
-                    VMware Workstation
-                           │
-                         VMnet10
-                    192.168.50.0/24
-                           │
-          ┌────────────────┼────────────────┐
-          │                │                │
-      WIN-SOC01           Kali        LINUX-SRV-01
-      192.168.50.20   192.168.50.10    192.168.50.30
-
+                         VMware Workstation
+                                │
+                              VMnet10
+                         192.168.50.0/24
+                                │
+              ┌─────────────────┼─────────────────┐
+              │                 │                 │
+            Kali            WIN-SOC01        LINUX-SRV-01
+        192.168.50.10     192.168.50.20     192.168.50.30
+         Adversary          Windows             SOC
+        Simulation         Endpoint           Support
+        
 ```
 
 ## Day 2 - Windows Security Telemetry + Sysmon
@@ -347,6 +394,190 @@ The complete incident investigation, evidence and timeline are documented in:
                        Incident Response
 
 ```
+## Day 7 - Local SOC Automation & Evidence Collection
+
+A PowerShell-based local SOC evidence collection workflow was implemented on `WIN-SOC01`.
+
+The automation collects:
+
+* Windows Security authentication, process and account events
+* Sysmon process, network, file, registry and DNS events
+* Microsoft Defender status and operational events
+* Defender threat detection and threat history records
+
+The validated collection generated a timestamped evidence package containing 13 files.
+
+The evidence was transferred to the Ubuntu SOC workspace for organization and then added to the project repository.
+
+```text
+evidence/
+└── incident-001/
+    └── SOC-Evidence-20260912-231542/
+        └── 13 evidence files
+```
+
+The automation script is available in:
+
+`automation/collect-soc-evidence.ps1`
+
+The automation documentation is available in:
+
+`automation/README.md`
+
+```text
+ 
+                    WIN-SOC01
+                       │
+          ┌────────────┼────────────┐
+          │            │            │
+       Security       Sysmon      Defender
+          │            │            │
+          └────────────┼────────────┘
+                       ▼
+             PowerShell Collector
+                       │
+                       ▼
+           Timestamped Evidence
+                       │
+                       ▼
+                  Ubuntu SOC
+                 192.168.50.30
+                       │
+          ┌────────────┼────────────┐
+          ▼            ▼            ▼
+      Evidence       Reports      Timeline
+          │            │            │
+          └────────────┼────────────┘
+                       ▼
+                GitHub Project
+```
+
+# Final Project Architecture
+
+## 1. Final Lab Architecture
+
+```text
+                         VMware Workstation
+                                │
+                              VMnet10
+                         192.168.50.0/24
+                                │
+             ┌──────────────────┼──────────────────┐
+             │                  │                  │
+           Kali            WIN-SOC01         LINUX-SRV-01
+       192.168.50.10       192.168.50.20       192.168.50.30
+        Adversary             Windows              SOC
+       Simulation            Endpoint            Support
+```
+
+## 2. Final Telemetry Architecture
+
+```text
+                         WIN-SOC01
+                             │
+              ┌──────────────┼──────────────┐
+              │              │              │
+        Windows Security    Sysmon       Defender
+              │              │              │
+              ▼              ▼              ▼
+        Authentication   Process        Protection
+        Process           Network        Status
+        Accounts          File           Scans
+                          Registry        Operational
+                          DNS
+              │              │              │
+              └──────────────┼──────────────┘
+                             ▼
+                       Local SOC Data
+```
+
+## 3. Detection and Hunting Architecture
+
+```text
+                    Local SOC Telemetry
+                             │
+          ┌──────────────────┼──────────────────┐
+          │                  │                  │
+     Windows Security      Sysmon            Defender
+          │                  │                  │
+          └──────────────────┼──────────────────┘
+                             ▼
+                  Detection Engineering
+                             │
+                             ▼
+                       Threat Hunting
+                             │
+                             ▼
+                    Contextual Analysis
+                             │
+                             ▼
+                       SOC Investigation
+```
+
+## 4. Adversary Simulation and Incident Response Architecture
+
+```text
+                         Kali
+                    192.168.50.10
+                           │
+                           ▼
+                 Network Reconnaissance
+                           │
+                           ▼
+                  Service Enumeration
+                           │
+                           ▼
+                 Controlled RDP Testing
+                           │
+                           ▼
+                      WIN-SOC01
+                    192.168.50.20
+                           │
+             ┌─────────────┼─────────────┐
+             │             │             │
+        Authentication   Sysmon       Defender
+             │             │             │
+             └─────────────┼─────────────┘
+                           ▼
+                    SOC Investigation
+                           │
+                           ▼
+                     Timeline Analysis
+                           │
+                           ▼
+                  Incident Response
+                           │
+                           ▼
+                   Containment/Cleanup
+```
+
+## 5. Automation and Evidence Architecture
+
+```text
+                     WIN-SOC01
+                         │
+              PowerShell Evidence Collector
+                         │
+        ┌────────────────┼────────────────┐
+        │                │                │
+ Windows Security      Sysmon          Defender
+        │                │                │
+        └────────────────┼────────────────┘
+                         ▼
+              Timestamped Evidence Package
+                         │
+                         ▼
+                       Ubuntu
+                  SOC Organization
+                         │
+             ┌───────────┼───────────┐
+             │           │           │
+          Evidence     Reports     Timelines
+             │           │           │
+             └───────────┼───────────┘
+                         ▼
+                    GitHub Project
+```
 
 
 ## Project Limitations
@@ -361,3 +592,15 @@ detection engineering, threat hunting and incident response.
 
 Cloud-based Sentinel ingestion and Sentinel analytics rules
 are outside the validated scope of this implementation.
+
+## Security and Testing Scope
+
+All adversary simulation and authentication testing was performed inside the isolated VMware laboratory.
+
+No malware or uncontrolled external targets were used.
+
+The project is intended for cybersecurity learning, SOC workflow demonstration and portfolio purposes.
+
+## Project Outcome
+
+The completed laboratory demonstrates a local SOC workflow from endpoint telemetry collection through detection, hunting, controlled adversary simulation, incident investigation, evidence collection, timeline creation and incident reporting.
